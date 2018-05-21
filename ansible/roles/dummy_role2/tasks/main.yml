@@ -1,0 +1,10 @@
+---
+- debug:
+    msg: >
+      This is dummy task which represents
+      installation of some service 'yyy'
+
+- copy:
+    dest: /tmp/dummy_yyy
+    content: >
+      DUMMY SERVICE 'YYY'

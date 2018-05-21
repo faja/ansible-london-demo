@@ -1,0 +1,3 @@
+---
+world:
+  type: {{ app.world.type }}

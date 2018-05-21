@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec 2>&1
+
+exec /demo/consul-template/bin/consul-template -config=/demo/consul-template/config.hcl -consul-addr="consul:8500"

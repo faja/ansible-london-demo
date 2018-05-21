@@ -1,0 +1,6 @@
+---
+- hosts: all
+  connection: local
+
+  roles:
+    - "{{ ansible_role_to_run }}"

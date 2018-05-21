@@ -1,0 +1,39 @@
+---
+- name: install app package
+  debug: msg="This tasks pretends to install app package"
+
+- name: create configuration file
+  template:
+    src: config.yaml.jn2
+    dest: /demo/app/config.yaml
+  register: app_reg_config
+
+- name: create runit directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /demo/log/app
+    - /demo/app/runit_service/app/log
+
+- name: create runit files
+  copy:
+    src: "{{ item }}"
+    dest: /{{ item }}
+    mode: 0755
+  with_items:
+    - demo/app/runit_service/app/run
+    - demo/app/runit_service/app/log/run
+    - demo/app/runit_service/app/log/config
+  register: app_reg_runit_files
+
+- name: start app service
+  runit:
+    name: app
+    service_src: /demo/app/runit_service
+    service_dir: /etc/service
+    enabled: yes
+    state: "{{ 'restarted' if
+      (app_reg_config | changed or
+       app_reg_runit_files | changed)
+       else 'started' }}"

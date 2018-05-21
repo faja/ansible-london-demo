@@ -1,0 +1,2 @@
+# role list:{{ range ls "nodes/node1/roles" }}
+{{ .Key }}{{ end }}

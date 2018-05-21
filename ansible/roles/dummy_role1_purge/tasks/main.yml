@@ -1,0 +1,9 @@
+---
+- debug:
+    msg: >
+      This is dummy task which represents
+      removing service 'xxx'
+
+- file:
+    path: /tmp/dummy_xxx
+    state: absent

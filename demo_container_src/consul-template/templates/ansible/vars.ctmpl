@@ -1,0 +1,2 @@
+# variable list:{{ range tree "nodes/node1/vars" }}
+{{ .Key }}:{{ .Value }}{{ end }}

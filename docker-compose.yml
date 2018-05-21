@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+  consul:
+    hostname: consul
+    image: consul:latest
+    command: consul agent -client=0.0.0.0 -dev
+    ports:
+      - target: 8500
+        published: 8500
+
+  node1:
+    hostname: node1
+    build: .
+    ports:
+      - target: 12345
+        published: 80
+    volumes:
+    - type: bind
+      source: ./ansible
+      target: /demo/ansible

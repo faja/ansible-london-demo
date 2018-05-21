@@ -1,0 +1,13 @@
+---
+- name: start app service
+  runit:
+    name: app
+    service_src: /demo/app/runit_service
+    service_dir: /etc/service
+    enabled: false
+    state: stopped
+
+- name: remove app's runit_service files
+  file:
+    path: /demo/app/runit_service/app
+    state: absent

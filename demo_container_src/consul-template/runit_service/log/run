@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec svlogd -b 16384 -tt /demo/log/consul-template
